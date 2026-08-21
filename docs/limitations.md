@@ -12,7 +12,7 @@
 
 ## Planned evidence upgrades
 
-1. Execute the pre-registered live-model baseline in [experiment-backlog.md](experiment-backlog.md).
+1. Run the fixed public test suite against at least two declared model/version configurations, with temperature and repeat count held constant; retain raw outputs and report pass rate, P0/P1 failures, latency, token use, and cost.
 2. Add a small public RAG corpus with retrieval, reranking, citation, faithfulness, and latency metrics.
 3. Add repeated-run stability, judge agreement, token, cost, and latency reporting.
 4. Add a framework-level agent demo with state recovery and tool-call traces.

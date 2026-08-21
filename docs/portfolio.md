@@ -1,5 +1,11 @@
 # Prompt Engineering Portfolio
 
+**Author:** 汪楠
+
+**Target:** 2027 graduate recruitment · AI Product Manager / Prompt Engineering
+
+**Public portfolio period:** June–August 2026
+
 ## Positioning
 
 I turn model behavior requirements from ad-hoc wording into versioned, testable, and traceable engineering assets. My public evidence focuses on System Prompt architecture, context and memory boundaries, tool-use contracts, executable evaluation contracts, adversarial fixtures, and structured output. This repository does not claim a production deployment.
@@ -47,13 +53,23 @@ I turn model behavior requirements from ad-hoc wording into versioned, testable,
 
 [Read the case study](case-studies/03-domain-agent.md)
 
-## Interview walkthrough
+### 4. Synthetic prompt iteration
 
-1. Explain why prompt text is only one layer of the system.
-2. Open the system-prompt sample and identify runtime-enforced controls.
-3. Run the demo and show why a P0 failure blocks release despite good noncritical scores.
-4. Inspect a domain output and trace each factual statement back to a structured input path.
-5. Close with limitations and the next experiment instead of overstating production evidence.
+**Problem:** a vague instruction to use retrieved context does not define whether embedded instructions are data or executable directions.
+
+**Design:** compare a deliberately weak, hand-authored baseline with a revised contract that marks retrieved content as untrusted, forbids hidden-data disclosure, and specifies a safe response.
+
+**Outcome:** the same executable checks reject the synthetic baseline response and accept the synthetic revised response. This demonstrates the check and revision rationale only; it is not evidence that a live model improved.
+
+[Read the case study](case-studies/04-prompt-iteration-synthetic.md)
+
+## Reviewer walkthrough
+
+1. Inspect the prompt architecture and identify which controls remain runtime-enforced.
+2. Compare the synthetic prompt iteration and its explicit evidence boundary.
+3. Run the demo and verify why a P0 failure blocks release despite strong noncritical scores.
+4. Trace a structured output claim back to its declared evidence reference.
+5. Review the limitations before drawing conclusions about live-model or production performance.
 
 ## Evidence policy
 

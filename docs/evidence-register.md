@@ -5,6 +5,7 @@ This register defines what each portfolio claim is allowed to mean.
 | Claim | Inspectable evidence | State | Not supported by this evidence |
 |---|---|---|---|
 | A modular prompt architecture was designed | System prompt, task overlay, methodology | Designed | Production deployment, quality improvement, cost reduction |
+| A prompt revision is connected to explicit checks | Hand-authored iteration fixture and regression test | Executed offline | Live-model improvement or causal attribution |
 | Evaluation checks execute | Test cases, response fixtures, `run_demo.py`, tests | Executed offline | Live-model accuracy or safety |
 | P0/P1 gates are enforced in code | Aggregator, `--enforce`, release-gate tests | Executed offline | Correct business severity policy for a real product |
 | Structured records are validated | JSON Schemas, semantic validator, valid/invalid tests | Executed offline | Semantic truth of model-generated content |

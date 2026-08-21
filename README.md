@@ -4,6 +4,10 @@ Evidence-conscious prompt architecture, executable evaluation contracts, safety 
 
 [中文说明](README.zh-CN.md) · [Portfolio](docs/portfolio.md) · [Live-page source](docs/index.html)
 
+**汪楠 · 2027 graduate candidate · AI Product Manager / Prompt Engineering**
+
+Public portfolio period: June–August 2026 · GitHub: [@bell-0211](https://github.com/bell-0211)
+
 ## What this repository demonstrates
 
 - Modular system-prompt design with explicit priority, context, tool, evidence, safety, and completion contracts.
@@ -21,6 +25,7 @@ Evidence-conscious prompt architecture, executable evaluation contracts, safety 
 | [System Prompt Architecture](docs/case-studies/01-system-prompt-architecture.md) | Monolithic prompts become hard to govern | Modular prompt sample, runtime boundaries, threat model |
 | [Evaluation Contract Harness](docs/case-studies/02-llm-evalops.md) | A high average score can hide critical failures | Executable checks, rubrics, gates, result aggregation |
 | [Structured Agent Contract](docs/case-studies/03-domain-agent.md) | Agent output must be structured and traceable | Schemas, manifest, semantic validation, golden cases |
+| [Synthetic Prompt Iteration](docs/case-studies/04-prompt-iteration-synthetic.md) | Prompt revisions need inspectable reasoning | Weak baseline, revised contract, executable check comparison |
 
 ## Evidence status at a glance
 
@@ -71,12 +76,13 @@ The demo is intentionally offline and deterministic. It evaluates synthetic resp
 
 ## Current scope and limitations
 
-This repository provides inspectable evidence of prompt/system design, evaluation-contract implementation, structured output, and safety-gate reasoning. It does not prove live-model quality or production impact. See [limitations](docs/limitations.md) and the [unexecuted experiment backlog](docs/experiment-backlog.md).
+This repository provides inspectable evidence of prompt/system design, evaluation-contract implementation, structured output, and safety-gate reasoning. It does not prove live-model quality or production impact. See [limitations and next validation steps](docs/limitations.md).
 
-## Use in interviews
+## Suggested review path
 
-Start with [docs/portfolio.md](docs/portfolio.md), then run the quick-start commands. For the hardest evidence questions, use [docs/interview-defense.md](docs/interview-defense.md).
+Start with [docs/portfolio.md](docs/portfolio.md), inspect the four case studies, then run the quick-start commands to verify the included contracts and gates.
 
 ## License
 
 No open-source license is granted at this stage. The repository is published for portfolio review; all rights are reserved unless a license is added later.
+

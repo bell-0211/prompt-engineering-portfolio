@@ -4,6 +4,10 @@
 
 [English](README.md) · [作品集正文](docs/portfolio.md) · [静态展示页源码](docs/index.html)
 
+**汪楠 · 2027 届秋招 · AI 产品经理 / Prompt Engineering**
+
+作品集整理周期：2026 年 6 月—8 月 · GitHub：[@bell-0211](https://github.com/bell-0211)
+
 ## 作品集证明什么
 
 - 将单体 System Prompt 拆解为优先级、上下文、工具、证据、安全和完成检查等可治理模块；
@@ -14,13 +18,14 @@
 
 > 这是公开脱敏版作品集。所有示例均经过重构或合成，不包含私有 System Prompt、内部工具名、生产数据、绝对路径或雇主保密信息。
 
-## 三个核心案例
+## 核心案例
 
 | 案例 | 解决的问题 | 可查看证据 |
 |---|---|---|
 | [System Prompt 架构](docs/case-studies/01-system-prompt-architecture.md) | 单体 Prompt 难维护、冲突和泄露面扩大 | 模块化样例、运行时边界、威胁模型 |
 | [评测契约 Harness](docs/case-studies/02-llm-evalops.md) | 高均分无法代表可上线 | 可执行检查、评分卡、硬门禁、结果聚合 |
 | [结构化 Agent 契约](docs/case-studies/03-domain-agent.md) | 输出需要结构化与可追溯 | Schema、manifest、语义校验、golden cases |
+| [合成 Prompt 迭代案例](docs/case-studies/04-prompt-iteration-synthetic.md) | Prompt 修改需要可解释、可检查 | 弱基线、修订契约、可执行检查对比 |
 
 ## 证据状态
 
@@ -48,12 +53,12 @@ python -m unittest discover -s tests -v
 
 离线 Demo 会对合成回复执行机器可运行的检查并生成结论，用于证明评测结构与门禁逻辑可以运行；它不是大模型 Benchmark。真实候选版本可使用 `--enforce`，阻断时返回非零退出码。
 
-## 与岗位 JD 的对应关系
+## 能力索引
 
 | 常见 JD 关键词 | 作品集证据 |
 |---|---|
-| Prompt 设计与迭代 | 模块化 System Prompt、场景路由、版本 manifest |
-| Agent / Function Calling | 工具职责边界、输入输出契约、失败降级 |
+| Prompt 设计与迭代 | 模块化 System Prompt、场景路由、合成迭代案例、版本 manifest |
+| Agent 契约 / 工具边界 | 工具职责边界、输入输出契约、失败降级 |
 | 效果评测与 bad case | 多类测试、评分卡、回归、结果聚合 |
 | Prompt 安全 | 注入、隐藏信息、危机信号和高影响动作门禁 |
 | 结构化输出 | JSON Schema、evidence refs、golden cases |
@@ -61,7 +66,7 @@ python -m unittest discover -s tests -v
 
 ## 能力边界
 
-当前公开证据重点覆盖 Prompt / Agent Contract / Evaluation / Safety，不宣称已有线上业务增长指标，也不把静态校验写成“生产验证通过”。真实模型 Benchmark、RAG、微调和框架级多 Agent 是下一阶段补强方向，详见 [docs/limitations.md](docs/limitations.md) 与 [实验待办](docs/experiment-backlog.md)。
+当前公开证据重点覆盖 Prompt / Agent Contract / Evaluation / Safety，不宣称已有线上业务增长指标，也不把静态校验写成“生产验证通过”。真实模型 Benchmark、RAG、微调和框架级多 Agent 是下一阶段补强方向，详见 [局限与下一步验证](docs/limitations.md)。
 
 ## 许可
 

@@ -31,6 +31,7 @@ def validate() -> list[str]:
     output_schema = load_json("examples/domain-agent/output.schema.json")
     golden = load_json("examples/domain-agent/golden-cases.json")
     fixtures = load_json("examples/evaluation/responses.synthetic.json")
+    iteration = load_json("examples/system-prompt/iteration-case.synthetic.json")
 
     cases = cases_doc.get("cases", [])
     ids = [case.get("id") for case in cases]
@@ -49,6 +50,14 @@ def validate() -> list[str]:
     fixture_ids = [item.get("case_id") for item in fixtures.get("responses", [])]
     require(set(fixture_ids) == set(ids), "response fixture IDs must exactly match case IDs", errors)
     require(len(fixture_ids) == len(set(fixture_ids)), "response fixture IDs must be unique", errors)
+
+    require(iteration.get("fixture_type") == "hand_authored_demonstration",
+            "prompt iteration must be labelled as a hand-authored demonstration", errors)
+    require("not model output" in iteration.get("disclaimer", "").lower(),
+            "prompt iteration disclaimer must state that responses are not model output", errors)
+    for key in ("input", "baseline_prompt", "baseline_response", "revised_prompt",
+                "revised_response", "checks"):
+        require(bool(iteration.get(key)), f"prompt iteration is missing {key}", errors)
 
     weights = [dimension.get("weight", 0) for dimension in rubric.get("dimensions", [])]
     require(sum(weights) == 100, "rubric weights must sum to 100", errors)

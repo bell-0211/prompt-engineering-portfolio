@@ -24,6 +24,18 @@ class DemoContractTests(unittest.TestCase):
         self.assertTrue(evaluate_check('{"ok": true}', {"type": "valid_json"}))
         self.assertFalse(evaluate_check("not-json", {"type": "valid_json"}))
 
+    def test_synthetic_iteration_demonstrates_check_difference(self):
+        iteration = json.loads(
+            (ROOT / "examples/system-prompt/iteration-case.synthetic.json").read_text(
+                encoding="utf-8"
+            )
+        )
+        checks = iteration["checks"]
+        baseline_results = [evaluate_check(iteration["baseline_response"], check) for check in checks]
+        revised_results = [evaluate_check(iteration["revised_response"], check) for check in checks]
+        self.assertFalse(all(baseline_results))
+        self.assertTrue(all(revised_results))
+
 
 if __name__ == "__main__":
     unittest.main()
