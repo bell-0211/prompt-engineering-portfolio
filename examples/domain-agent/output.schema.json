@@ -1,0 +1,27 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.invalid/domain-agent/output.schema.json",
+  "title": "Domain Agent Output",
+  "type": "object",
+  "required": ["request_id", "summary", "claims", "open_questions", "status"],
+  "properties": {
+    "request_id": {"type": "string"},
+    "summary": {"type": "string"},
+    "claims": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["text", "kind", "evidence_refs"],
+        "properties": {
+          "text": {"type": "string"},
+          "kind": {"enum": ["fact", "calculation", "inference", "recommendation"]},
+          "evidence_refs": {"type": "array", "items": {"type": "string"}}
+        },
+        "additionalProperties": false
+      }
+    },
+    "open_questions": {"type": "array", "items": {"type": "string"}},
+    "status": {"enum": ["complete", "partial", "blocked"]}
+  },
+  "additionalProperties": false
+}

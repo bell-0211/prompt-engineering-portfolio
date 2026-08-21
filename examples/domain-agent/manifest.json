@@ -1,0 +1,13 @@
+{
+  "package": "domain-agent-public-sample",
+  "version": "1.0.0",
+  "prompt": "../system-prompt/system.sample.md",
+  "task_overlay": "../system-prompt/task-overlay.sample.md",
+  "input_schema": "input.schema.json",
+  "output_schema": "output.schema.json",
+  "golden_cases": "golden-cases.json",
+  "compatibility": {
+    "schema_version": "1.0",
+    "runtime": "offline-demo"
+  }
+}

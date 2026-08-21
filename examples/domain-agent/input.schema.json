@@ -1,0 +1,25 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.invalid/domain-agent/input.schema.json",
+  "title": "Domain Agent Input",
+  "type": "object",
+  "required": ["request_id", "request", "facts"],
+  "properties": {
+    "request_id": {"type": "string", "minLength": 1},
+    "request": {"type": "string", "minLength": 1},
+    "facts": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["id", "value", "source_type"],
+        "properties": {
+          "id": {"type": "string"},
+          "value": {},
+          "source_type": {"enum": ["user", "tool", "document"]}
+        },
+        "additionalProperties": false
+      }
+    }
+  },
+  "additionalProperties": false
+}

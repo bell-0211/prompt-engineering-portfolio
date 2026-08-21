@@ -1,0 +1,25 @@
+name: validate-portfolio
+
+on:
+  push:
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Validate public assets
+        run: python scripts/validate_assets.py
+      - name: Run deterministic contract demo
+        run: python scripts/run_demo.py
+      - name: Aggregate release decision
+        run: python scripts/aggregate_results.py
+      - name: Run regression tests
+        run: python -m unittest discover -s tests -v
