@@ -4,7 +4,7 @@ Evidence-conscious prompt architecture, executable evaluation contracts, safety 
 
 [中文说明](README.zh-CN.md) · [Portfolio](docs/portfolio.md) · [Live-page source](docs/index.html)
 
-**汪楠 · 2027 graduate candidate · AI Product Manager / Prompt Engineering**
+**汪楠 · 2027 graduate candidate · AI Product Manager**
 
 Public portfolio period: June–August 2026 · GitHub: [@bell-0211](https://github.com/bell-0211)
 
