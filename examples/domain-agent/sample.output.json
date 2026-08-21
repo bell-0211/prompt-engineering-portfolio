@@ -1,0 +1,18 @@
+{
+  "request_id": "synthetic-request-001",
+  "summary": "The supplied record describes eight offline synthetic fixtures.",
+  "claims": [
+    {
+      "text": "The fixture count is eight.",
+      "kind": "fact",
+      "evidence_refs": ["fact-1"]
+    },
+    {
+      "text": "The records are synthetic and offline.",
+      "kind": "fact",
+      "evidence_refs": ["fact-2"]
+    }
+  ],
+  "open_questions": [],
+  "status": "complete"
+}

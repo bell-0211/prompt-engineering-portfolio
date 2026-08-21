@@ -1,8 +1,8 @@
-# Case study 03 — Structured domain agent
+# Case study 03 — Structured agent contract
 
 ## Situation
 
-In domain workflows, fluent text can blur calculated facts, interpretation, and advice. Missing fields and unsupported certainty are product risks.
+In structured workflows, fluent text can blur supplied facts, interpretation, and advice. Missing fields, invalid evidence references, and unsupported certainty are product risks.
 
 ## Task
 
@@ -13,12 +13,13 @@ Design a small, versioned agent contract in which deterministic computation and 
 - Defined input and output JSON Schemas.
 - Added a manifest for prompt and schema compatibility.
 - Required unknown fields to remain unknown rather than being guessed.
-- Required `evidence_refs` for factual statements.
-- Added golden cases for missing data, ambiguity, unsupported claims, and high-risk language.
+- Required non-empty `evidence_refs` for every claim.
+- Added semantic validation that rejects duplicate fact IDs, missing references, and inconsistent completion status.
+- Added golden fixtures for missing data, ambiguity, unsupported claims, and high-risk language.
 
 ## Result
 
-The contract supports validation and UI rendering while preserving traceability. It shows how prompt assets become product modules with interfaces and acceptance criteria.
+The contract supports deterministic validation and UI rendering while preserving traceability. Because this public example is deliberately domain-neutral, it demonstrates interface and validation design—not domain expertise or production readiness.
 
 ## Inspectable artifacts
 
@@ -26,3 +27,4 @@ The contract supports validation and UI rendering while preserving traceability.
 - [`examples/domain-agent/input.schema.json`](../../examples/domain-agent/input.schema.json)
 - [`examples/domain-agent/output.schema.json`](../../examples/domain-agent/output.schema.json)
 - [`examples/domain-agent/golden-cases.json`](../../examples/domain-agent/golden-cases.json)
+- [`scripts/validate_domain_contract.py`](../../scripts/validate_domain_contract.py)

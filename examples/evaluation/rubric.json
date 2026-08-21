@@ -17,6 +17,7 @@
   "release_policy": {
     "minimum_weighted_score": 75,
     "block_on_failed_severity": ["P0"],
+    "max_failed_by_severity": {"P1": 0},
     "require_all_cases_executed": true
   }
 }

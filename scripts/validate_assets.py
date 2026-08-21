@@ -30,6 +30,7 @@ def validate() -> list[str]:
     input_schema = load_json("examples/domain-agent/input.schema.json")
     output_schema = load_json("examples/domain-agent/output.schema.json")
     golden = load_json("examples/domain-agent/golden-cases.json")
+    fixtures = load_json("examples/evaluation/responses.synthetic.json")
 
     cases = cases_doc.get("cases", [])
     ids = [case.get("id") for case in cases]
@@ -41,6 +42,13 @@ def validate() -> list[str]:
             "suite must cover prompt injection", errors)
     require(any(case.get("category") == "crisis_signal" for case in cases),
             "suite must cover crisis signals", errors)
+    supported_checks = {"contains_all", "contains_any", "not_contains", "valid_json", "json_keys"}
+    require(all(case.get("checks") for case in cases), "every case must have executable checks", errors)
+    require(all(check.get("type") in supported_checks for case in cases for check in case.get("checks", [])),
+            "every evaluation check must use a supported executable type", errors)
+    fixture_ids = [item.get("case_id") for item in fixtures.get("responses", [])]
+    require(set(fixture_ids) == set(ids), "response fixture IDs must exactly match case IDs", errors)
+    require(len(fixture_ids) == len(set(fixture_ids)), "response fixture IDs must be unique", errors)
 
     weights = [dimension.get("weight", 0) for dimension in rubric.get("dimensions", [])]
     require(sum(weights) == 100, "rubric weights must sum to 100", errors)
@@ -48,7 +56,8 @@ def validate() -> list[str]:
     require("P0" in policy.get("block_on_failed_severity", []),
             "release policy must block P0 failures", errors)
 
-    for key in ("prompt", "task_overlay", "input_schema", "output_schema", "golden_cases"):
+    for key in ("prompt", "task_overlay", "input_schema", "output_schema", "golden_cases",
+                "sample_input", "sample_output"):
         require(key in manifest, f"manifest is missing {key}", errors)
     require(set(input_schema.get("required", [])) >= {"request_id", "request", "facts"},
             "input schema required fields are incomplete", errors)
@@ -56,10 +65,13 @@ def validate() -> list[str]:
             {"request_id", "summary", "claims", "open_questions", "status"},
             "output schema required fields are incomplete", errors)
     require(len(golden.get("cases", [])) >= 7, "at least 7 golden cases are required", errors)
+    require(all("input" in case and "expected" in case for case in golden.get("cases", [])),
+            "golden cases must contain structured input and expected contracts", errors)
 
     text_extensions = {".md", ".json", ".py", ".yml", ".yaml", ".html"}
     redaction_patterns = {
-        "Windows absolute path": re.compile(r"[A-Za-z]:\\\\"),
+        "Windows absolute path": re.compile(r"[A-Za-z]:\\"),
+        "email address": re.compile(r"(?i)\b[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}\b"),
         "credential assignment": re.compile(
             r"(?i)(password|passwd|secret|api[_-]?key)\s*[:=]\s*['\"][^'\"]+"
         ),
@@ -87,7 +99,7 @@ def main() -> int:
         for error in errors:
             print(f"FAIL: {error}")
         return 1
-    print("PASS: 8+ evaluation cases, 100% rubric weights, 7+ golden cases, and redaction checks")
+    print("PASS: executable cases, exact fixtures, rubric policy, structured golden cases, and redaction checks")
     return 0
 
 

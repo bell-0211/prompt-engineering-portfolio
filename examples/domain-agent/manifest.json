@@ -6,8 +6,10 @@
   "input_schema": "input.schema.json",
   "output_schema": "output.schema.json",
   "golden_cases": "golden-cases.json",
+  "sample_input": "sample.input.json",
+  "sample_output": "sample.output.json",
   "compatibility": {
     "schema_version": "1.0",
-    "runtime": "offline-demo"
+    "runtime": "offline-contract-harness"
   }
 }
