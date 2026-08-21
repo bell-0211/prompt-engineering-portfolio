@@ -1,0 +1,8 @@
+{
+  "request_id": "synthetic-request-001",
+  "request": "Summarize the supplied project facts and keep uncertainty visible.",
+  "facts": [
+    {"id": "fact-1", "value": 8, "source_type": "tool"},
+    {"id": "fact-2", "value": "offline synthetic fixtures", "source_type": "document"}
+  ]
+}

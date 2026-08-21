@@ -22,7 +22,8 @@ Dimension scores describe content quality. Release readiness is a separate decis
 ```text
 release = weighted_score >= threshold
           AND no_P0_failure
+          AND P1_failure_count <= budget
           AND required_evidence_present
 ```
 
-A critical failure cannot be offset by fluent prose or a high average. The included aggregator implements this principle.
+A critical failure cannot be offset by fluent prose or a high average. The included aggregator implements this principle and exposes `--enforce` for a real release job. The default demo intentionally expects a blocked result so CI can prove the negative path works without representing that fixture as a releasable model.

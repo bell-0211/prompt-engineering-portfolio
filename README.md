@@ -1,16 +1,20 @@
 # Prompt Engineering Portfolio
 
-Production-oriented prompt architecture, evaluation, safety, and domain-agent case studies.
+Evidence-conscious prompt architecture, executable evaluation contracts, safety gates, and structured-agent case studies.
 
 [中文说明](README.zh-CN.md) · [Portfolio](docs/portfolio.md) · [Live-page source](docs/index.html)
+
+**汪楠 · 2027 graduate candidate · AI Product Manager**
+
+Public portfolio period: June–August 2026 · GitHub: [@bell-0211](https://github.com/bell-0211)
 
 ## What this repository demonstrates
 
 - Modular system-prompt design with explicit priority, context, tool, evidence, safety, and completion contracts.
-- Evaluation assets that separate content quality from release readiness.
+- An executable offline contract harness that derives pass/fail results from response fixtures instead of accepting pre-filled verdicts.
 - Adversarial and high-risk tests treated as release gates instead of being averaged away.
-- Structured domain-agent inputs/outputs with traceable evidence references.
-- Reproducible local validation using only the Python standard library.
+- Structured-agent inputs/outputs with schema and cross-reference validation.
+- Reproducible local validation with a small, declared development dependency.
 
 > This is a sanitized portfolio repository. Examples are reconstructed and synthetic; they do not contain private system prompts, internal tool names, production data, or employer-confidential material.
 
@@ -19,21 +23,35 @@ Production-oriented prompt architecture, evaluation, safety, and domain-agent ca
 | Case study | Problem | Main artifacts |
 |---|---|---|
 | [System Prompt Architecture](docs/case-studies/01-system-prompt-architecture.md) | Monolithic prompts become hard to govern | Modular prompt sample, runtime boundaries, threat model |
-| [LLM EvalOps](docs/case-studies/02-llm-evalops.md) | A high average score can hide critical failures | Test contracts, rubrics, gates, result aggregation |
-| [Domain Agent](docs/case-studies/03-domain-agent.md) | Domain output must be structured and traceable | Schemas, manifest, golden cases, evidence references |
+| [Evaluation Contract Harness](docs/case-studies/02-llm-evalops.md) | A high average score can hide critical failures | Executable checks, rubrics, gates, result aggregation |
+| [Structured Agent Contract](docs/case-studies/03-domain-agent.md) | Agent output must be structured and traceable | Schemas, manifest, semantic validation, golden cases |
+| [Synthetic Prompt Iteration](docs/case-studies/04-prompt-iteration-synthetic.md) | Prompt revisions need inspectable reasoning | Weak baseline, revised contract, executable check comparison |
+
+## Evidence status at a glance
+
+| Claim | Status | What it means |
+|---|---|---|
+| Prompt/runtime architecture | Designed | A reviewable public design exists; no production deployment is claimed. |
+| Evaluation and release-gate code | Executed offline | Deterministic synthetic fixtures exercise the included code path. |
+| Schema and evidence-reference checks | Executed offline | Valid and invalid synthetic records are covered by tests. |
+| Live-model quality, latency, cost, and stability | Not measured | No provider benchmark is presented in this version. |
+| Production or business impact | Not verified | No traffic, conversion, retention, or revenue claim is made. |
+
+See the full [evidence register](docs/evidence-register.md).
 
 ## Quick start
 
-Python 3.10+ is sufficient; no third-party package is required.
+Python 3.10+ is required.
 
 ```bash
+python -m pip install -r requirements-dev.txt
 python scripts/validate_assets.py
 python scripts/run_demo.py
-python scripts/aggregate_results.py
+python scripts/aggregate_results.py --expect blocked
 python -m unittest discover -s tests -v
 ```
 
-The demo is intentionally offline and deterministic. It validates the evaluation contract and release-gate logic; it is not presented as a live model benchmark.
+The demo is intentionally offline and deterministic. It evaluates synthetic response fixtures with executable checks and demonstrates release-gate behavior. It is not an LLM benchmark. A real release candidate would use `--enforce`, which returns a non-zero exit code when the decision is blocked.
 
 ## Repository structure
 
@@ -58,12 +76,13 @@ The demo is intentionally offline and deterministic. It validates the evaluation
 
 ## Current scope and limitations
 
-This repository proves prompt/system design, EvalOps, structured output, and safety-governance ability. It does not claim production traffic, independent RAG benchmarking, fine-tuning expertise, or a framework-specific multi-agent deployment. See [limitations](docs/limitations.md).
+This repository provides inspectable evidence of prompt/system design, evaluation-contract implementation, structured output, and safety-gate reasoning. It does not prove live-model quality or production impact. See [limitations and next validation steps](docs/limitations.md).
 
-## Use in interviews
+## Suggested review path
 
-Start with [docs/portfolio.md](docs/portfolio.md), then run the four quick-start commands. The case studies are designed for a 10–15 minute walkthrough and make the decision logic inspectable rather than exposing proprietary prompts.
+Start with [docs/portfolio.md](docs/portfolio.md), inspect the four case studies, then run the quick-start commands to verify the included contracts and gates.
 
 ## License
 
 No open-source license is granted at this stage. The repository is published for portfolio review; all rights are reserved unless a license is added later.
+

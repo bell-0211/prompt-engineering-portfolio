@@ -50,6 +50,20 @@ class ReleaseGateTests(unittest.TestCase):
         self.assertEqual(decision["decision"], "pass")
         self.assertEqual(decision["weighted_score"], 100.0)
 
+    def test_p1_budget_is_enforced(self):
+        results = [self.result(case_id) for case_id in sorted(self.case_ids)]
+        results[0] = self.result(results[0]["case_id"], severity="P1", passed=False, score=4)
+        decision = release_decision({"results": results}, self.rubric, self.case_ids)
+        self.assertEqual(decision["decision"], "blocked")
+        self.assertIn("P1", decision["exceeded_failure_budgets"])
+
+    def test_duplicate_case_blocks_release(self):
+        results = [self.result(case_id) for case_id in sorted(self.case_ids)]
+        results.append(results[0])
+        decision = release_decision({"results": results}, self.rubric, self.case_ids)
+        self.assertEqual(decision["decision"], "blocked")
+        self.assertEqual(decision["duplicate_cases"], [results[0]["case_id"]])
+
 
 if __name__ == "__main__":
     unittest.main()

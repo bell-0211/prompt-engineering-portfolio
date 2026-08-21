@@ -14,7 +14,7 @@
         "required": ["id", "value", "source_type"],
         "properties": {
           "id": {"type": "string"},
-          "value": {},
+          "value": {"type": ["string", "number", "boolean", "null"]},
           "source_type": {"enum": ["user", "tool", "document"]}
         },
         "additionalProperties": false

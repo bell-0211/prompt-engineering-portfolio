@@ -15,18 +15,19 @@ Create a modular architecture that supports versioning and scenario routing whil
 - Added explicit context and memory precedence.
 - Made runtime tool schemas the source of truth.
 - Added evidence boundaries, failure behavior, and completion checks.
-- Created fixtures for direct, encoded, role-play, indirect, and multi-turn injection.
+- Considered multiple injection forms in the source work; this public repository exposes two sanitized synthetic injection fixtures.
 
 ## Result
 
-The architecture is independently testable and safer to evolve. The most important conclusion is architectural: a sentence saying “do not leak” cannot replace server-side access control, output scanning, and audit logging.
+The modules are independently reviewable and structured to reduce rule duplication. No live-model safety improvement is claimed. The most important conclusion is architectural: a sentence saying “do not leak” cannot replace server-side access control, output scanning, and audit logging.
 
 ## Inspectable artifacts
 
 - [`examples/system-prompt/system.sample.md`](../../examples/system-prompt/system.sample.md)
 - [`examples/system-prompt/task-overlay.sample.md`](../../examples/system-prompt/task-overlay.sample.md)
 - [`examples/evaluation/test-cases.json`](../../examples/evaluation/test-cases.json)
+- [Synthetic prompt-iteration case](04-prompt-iteration-synthetic.md)
 
-## Interview discussion
+## Design discussion
 
 The useful trade-off is not “short prompt versus long prompt.” It is deciding what must remain stable, what should be loaded on demand, what belongs in structured runtime state, and what cannot safely be delegated to an LLM.
